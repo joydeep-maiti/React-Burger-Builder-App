@@ -4,7 +4,7 @@ import Burger from '../components/Burger/Burger';
 import BuildControls from '../components/Burger/BuildControls/BuildControls';
 import OrderSummery from '../components/OrderSummery/OrderSummery';
 import Modal from '../components/UI/Modal/Modal';
-import axios from '../axios-orders';
+// import axios from '../axios-orders';
 import Spinner from '../components/UI/Spinner/Spinner';
 
 const PRICES = {
@@ -61,26 +61,29 @@ class BurgerBuilder extends Component {
     }
 
     orderCancelHandler = () => {
+        console.log(this.props);
         this.setState({ orderNow: false });
     }
 
     orderContinueHandler = () => {
-        this.setState({ loading: true });
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Joydeep',
-                address: 'Kolkata'
-            }
-        }
-        axios.post('/orders.json', order)
-        .then((response) => {
-            this.setState({ loading: false, orderNow: false, });
-        }).catch((error) => {
-            console.log(error);
-            this.setState({ loading: false, orderNow: false, });
-        });
+
+        // this.setState({ loading: true });
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: 'Joydeep',
+        //         address: 'Kolkata'
+        //     }
+        // }
+        // axios.post('/orders.json', order)
+        // .then((response) => {
+        //     this.setState({ loading: false, orderNow: false, });
+        // }).catch((error) => {
+        //     console.log(error);
+        //     this.setState({ loading: false, orderNow: false, });
+        // });
+        this.props.history.push('/checkout');
     }
 
     render() {
